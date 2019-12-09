@@ -7,17 +7,27 @@ import sys
 # recursive solution
 
 
+def memoize(func):
+    memo = {}
+
+    def wrapper(val):
+        if val not in memo:
+            memo[val] = func(val)
+        return memo[val]
+    return wrapper
+
+
 def eating_cookies(n):
     if n == 0:
         return 1
     elif n < 0:
         return 0
     else:
-        total_cookies = eating_cookies(
+        return eating_cookies(
             n - 1) + eating_cookies(n - 2) + eating_cookies(n - 3)
-        return total_cookies
-    return 0
 
+
+eating_cookies = memoize(eating_cookies)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:

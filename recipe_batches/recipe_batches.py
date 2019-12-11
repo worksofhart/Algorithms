@@ -8,10 +8,8 @@ def recipe_batches(recipe, ingredients):
         # If our recipe includes any ingredient not available, we can't make any batches
         if item not in ingredients:
             return 0
-
         # The amount we can make is determined by dividing what's on hand by what's needed
         amount = ingredients[item] // needed
-
         # If we don't have enough of any ingredient to make even one batch, return 0
         if amount == 0:
             return 0
